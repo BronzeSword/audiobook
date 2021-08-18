@@ -2,7 +2,8 @@
     <header class="holder-empty">
         <div class="header-wrape">
             <div class="header-content">
-                <a class="logo" />
+                <a class="logo"
+                   @click="goToPage()" />
                 <div class="search">
                     <el-input v-model="parmas.keyword"
                               placeholder="请输入内容"
@@ -46,6 +47,19 @@ export default {
         search() {
             this.clickLinkBtn = 1;
             this.distinguishPages(this.parmas, 'header');
+        },
+        goToPage() {
+            // 去首页
+            const parmas = {
+                keyword: '',
+                categoryId: 0,
+                pageNumber: 1,
+                Sort: 'date',
+            };
+            this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', parmas);
+            this.$router.push({
+                path: '/index',
+            });
         },
     },
 };
