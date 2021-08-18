@@ -17,6 +17,7 @@ export default {
 <style scoped lang='scss'>
 @import '@/assets/styles/variables.scss';
 .footer-wrape {
+    padding-bottom: 40px;
     .content {
         width: 1080px;
         margin: 50px auto 0;

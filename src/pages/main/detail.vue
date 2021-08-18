@@ -22,8 +22,8 @@
                         allowfullscreen />
             </div>
             <div
-                v-html="detailData.body"
-                class="content" />
+                class="content"
+                v-html="detailData.body" />
         </div>
         <div class="detail-right">
             <div class="advertising-space">
@@ -116,6 +116,11 @@ export default {
             line-height: 300px;
             margin-bottom: 30px;
         }
+    }
+    &::after {
+        content: '';
+        display: block;
+        clear: both;
     }
 }
 </style>

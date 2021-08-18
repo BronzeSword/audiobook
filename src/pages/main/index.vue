@@ -11,37 +11,47 @@
                     {{ item.name }}
                 </div>
             </div>
-            <ul class="list">
-                <li
-                    v-for="(item, index) in articleList"
-                    :key="index"
-                    class="item"
-                    @click="goToDetail(item.articleId)">
-                    <div class="album">
-                        <img :src="item.thumbnail">
-                    </div>
-                    <div class="info">
-                        <h4 class="title">
-                            {{ item.title }}
-                        </h4>
-                        <p>作者：{{ item.author }}</p>
-                        <p>分类：{{ item.categoryName }}</p>
-                        <p>状态：{{ item.statusStr }}</p>
-                        <p>时间：{{ item.createdAt }}</p>
-                        <p>热度：{{ item.hit }}</p>
-                    </div>
-                </li>
-            </ul>
-            <div class="page-pagination-wrape">
-                <el-pagination
-                    :current-page.sync="currentPage"
-                    :page-size="10"
-                    :total="totalNumber"
-                    background
-                    layout="prev, pager, next, jumper"
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange" />
-            </div>
+            <template v-if="articleList.length > 0">
+                <ul class="list">
+                    <li
+                        v-for="(item, index) in articleList"
+                        :key="index"
+                        class="item"
+                        @click="goToDetail(item.articleId)">
+                        <div class="album">
+                            <img :src="item.thumbnail">
+                        </div>
+                        <div class="info">
+                            <h4 class="title">
+                                {{ item.title }}
+                            </h4>
+                            <p>作者：{{ item.author }}</p>
+                            <p>分类：{{ item.categoryName }}</p>
+                            <!-- <p>状态：{{ item.statusStr }}</p> -->
+                            <p>时间：{{ item.createdAt }}</p>
+                            <p>热度：{{ item.hit }}</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="page-pagination-wrape">
+                    <el-pagination
+                        :current-page.sync="currentPage"
+                        :page-size="10"
+                        :total="totalNumber"
+                        background
+                        layout="prev, pager, next, jumper"
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange" />
+                </div>
+            </template>
+            <template v-else>
+                <div class="empty-data">
+                    <img src="@/assets/images/empty_icon.png">
+                    <p class="tips">
+                        很抱歉！没有找到与“<span class="red">{{ parmas.keyword }}</span>”相关的文章，试着重新搜索一下吧！
+                    </p>
+                </div>
+            </template>
         </div>
         <!-- 热榜 -->
         <div class="layout-side_explore">
@@ -49,7 +59,9 @@
                 v-for="(item, pindex) in rankList"
                 :key="pindex"
                 class="rank-list">
-                <div class="rank-title">{{ item.rankTitle }}</div>
+                <div class="rank-title">
+                    {{ item.rankTitle }}
+                </div>
                 <li
                     v-for="(childrenItem, cindex) in item.list"
                     :key="cindex"
@@ -84,13 +96,33 @@ export default {
                 { name: '按热度排', sort: 'hit' },
             ],
             rankList: [],
+            keywords: '',
+            categoryId: '',
         };
     },
-    computed: mapState({
-        articleList: (state) => state.articleList,
-        totalNumber: (state) => state.articleTotalNumber,
-        parmas: (state) => state.searchArticlePamars,
-    }),
+    computed: {
+        ...mapState({
+            articleList: (state) => state.articleList,
+            totalNumber: (state) => state.articleTotalNumber,
+            parmas: (state) => state.searchArticlePamars,
+        }),
+        clickLinkBtn: {
+            get() {
+                return this.$store.state.clickLinkBtn;
+            },
+            set(val) {
+                this.$store.commit('SET_CLICK_LINK_BTN_VALUE', val);
+            },
+        },
+    },
+    watch: {
+        clickLinkBtn(val) {
+            if (val === 1) {
+                this.clickLinkBtn = 0;
+                this.getRankList();
+            }
+        },
+    },
     created() {
         this.init();
         this.getRankList();
@@ -113,6 +145,8 @@ export default {
             this.getArticleList(this.parmas);
         },
         sort(index) {
+            this.parmas.pageNumber = 1;
+            this.currentPage = this.parmas.pageNumber;
             this.parmas.Sort = this.sortData[index].sort;
             this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', this.parmas);
             this.getArticleList(this.parmas);
@@ -120,8 +154,8 @@ export default {
         // 获取热榜文章
         getRankList() {
             const parmas = {
-                keyword: '',
-                categoryId: '',
+                keyword: this.parmas.keyword,
+                categoryId: this.parmas.categoryId,
             };
             main.getArticleRankList(parmas).then((res) => {
                 if (res.code === 0) {
@@ -132,7 +166,6 @@ export default {
 
         // 去详情页面
         goToDetail(id) {
-            // const id = type === 'rank' ?  : this.articleList[i].articleId,
             this.$router.push({
                 path: '/detail',
                 query: {
@@ -208,6 +241,13 @@ export default {
                     .title {
                         font-weight: 700;
                         margin-bottom: 8px;
+                        text-overflow: ellipsis;
+                        text-overflow: -o-ellipsis-lastline;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        line-clamp: 2;
+                        -webkit-box-orient: vertical;
                     }
                     p {
                         text-overflow: ellipsis;
@@ -306,6 +346,20 @@ export default {
             height: 300px;
             text-align: center;
             line-height: 300px;
+        }
+    }
+
+    .empty-data {
+        width: 800px;
+        text-align: center;
+        height: 300px;
+        .tips {
+            color: #333;
+            font-size: 14px;
+            .red {
+                color: #d47e74;
+                font-weight: bold;
+            }
         }
     }
 }

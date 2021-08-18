@@ -24,6 +24,16 @@ export default {
             columnList: [],
         };
     },
+    computed: {
+        clickLinkBtn: {
+            get() {
+                return this.$store.state.clickLinkBtn;
+            },
+            set(val) {
+                this.$store.commit('SET_CLICK_LINK_BTN_VALUE', val);
+            },
+        },
+    },
     created() {
         this.init();
     },
@@ -37,8 +47,9 @@ export default {
             });
         },
         checked(i) {
+            this.clickLinkBtn = 1;
+            this.parmas.pageNumber = 1;
             this.parmas.categoryId = this.columnList[i].categoryId;
-            // console.log(this.parmas.categoryId);
             this.distinguishPages(this.parmas, 'category');
         },
     },

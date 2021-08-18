@@ -24,10 +24,11 @@ export default {
     },
 
     // 文章排行  /api/audio/article/633
-    getArticleRankList() {
+    getArticleRankList(params) {
         return Fetch({
             url: '/api/audio/article_rank',
             method: 'get',
+            params,
         });
     },
 

@@ -4,8 +4,9 @@ export default {
     backCategoryId: '', // 查询回来的categoryId
     searchArticlePamars: {
         keyword: '',
-        categoryId: '',
+        categoryId: 0,
         pageNumber: 1,
-        Sort: '',
+        Sort: 'date',
     },
+    clickLinkBtn: 0, // 点击调取联动接口的作用
 };

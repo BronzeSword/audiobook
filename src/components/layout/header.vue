@@ -28,12 +28,23 @@ export default {
         return {
         };
     },
-    computed: mapState({
-        parmas: (state) => state.searchArticlePamars,
-    }),
+    computed: {
+        ...mapState({
+            parmas: (state) => state.searchArticlePamars,
+        }),
+        clickLinkBtn: {
+            get() {
+                return this.$store.state.clickLinkBtn;
+            },
+            set(val) {
+                this.$store.commit('SET_CLICK_LINK_BTN_VALUE', val);
+            },
+        },
+    },
     methods: {
         ...mapActions(['getArticleList']),
         search() {
+            this.clickLinkBtn = 1;
             this.distinguishPages(this.parmas, 'header');
         },
     },
