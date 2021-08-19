@@ -97,7 +97,6 @@ export default {
             ],
             rankList: [],
             keywords: '',
-            categoryId: '',
         };
     },
     computed: {
@@ -130,7 +129,15 @@ export default {
     methods: {
         ...mapActions(['getArticleList']),
         init() {
-            this.getArticleList(this.parmas);
+            const parmas = {
+                keyword: this.parmas.keyword,
+                categoryId: this.parmas.categoryId || 0,
+                pageNumber: 1,
+                Sort: 'date',
+            };
+            console.log(123123131);
+            this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', parmas);
+            this.getArticleList(parmas);
         },
         handleSizeChange(val) {
             console.log(`每页 ${val} 条`);

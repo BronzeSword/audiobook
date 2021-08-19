@@ -9,7 +9,7 @@ export default {
         const states = state;
         states.articleList = data?.list;
         states.articleTotalNumber = data.total;
-        states.backCategoryId = data.categoryId;
+        states.backCategoryId = +data.categoryId;
     },
     [SET_SEARCH_ARTICLE_PARAMS](state, data) {
         const states = state;

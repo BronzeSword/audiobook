@@ -20,7 +20,7 @@ export const common = {
                 || this.$route.path.indexOf('/index') === -1) {
                 const parmas = {
                     keyword: type==='header' ? dt.keyword : '',
-                    categoryId: '',
+                    categoryId: this.parmas.categoryId,
                     pageNumber: 1,
                     Sort: '',
                 };

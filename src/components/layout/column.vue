@@ -5,7 +5,7 @@
                 v-for="(item, index) in columnList"
                 :key="index"
                 class="tag"
-                :class="[parmas.categoryId === item.categoryId ? 'active' : '']"
+                :class="[(parmas.categoryId === item.categoryId) ? 'active' : '']"
                 @click="checked(index)">
                 {{ item.name }}
             </div>
@@ -13,6 +13,7 @@
     </div>
 </template>
 <script>
+// import { mapState } from 'vuex';
 import { main } from '@/api';
 import { common } from '../../mixin/index';
 
@@ -25,6 +26,9 @@ export default {
         };
     },
     computed: {
+        // ...mapState({
+        //     backCategoryId: (state) => state.backCategoryId,
+        // }),
         clickLinkBtn: {
             get() {
                 return this.$store.state.clickLinkBtn;
@@ -49,7 +53,14 @@ export default {
         checked(i) {
             this.clickLinkBtn = 1;
             this.parmas.pageNumber = 1;
-            this.parmas.categoryId = this.columnList[i].categoryId;
+            // this.parmas.categoryId = this.columnList[i].categoryId;
+            const parmas = {
+                keyword: this.parmas.keyword,
+                categoryId: this.columnList[i].categoryId,
+                pageNumber: 1,
+                Sort: 'date',
+            };
+            this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', parmas);
             this.distinguishPages(this.parmas, 'category');
         },
     },
