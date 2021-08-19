@@ -53,7 +53,6 @@ export default {
         checked(i) {
             this.clickLinkBtn = 1;
             this.parmas.pageNumber = 1;
-            // this.parmas.categoryId = this.columnList[i].categoryId;
             const parmas = {
                 keyword: this.parmas.keyword,
                 categoryId: this.columnList[i].categoryId,
