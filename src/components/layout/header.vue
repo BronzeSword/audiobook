@@ -97,7 +97,7 @@ export default {
                     right: 0;
                     top: 0;
                     bottom: 0;
-                    background: url(../../assets/images/logo.png) 0 no-repeat;
+                    background: url(http://cooqr.com/logo.png) 0 no-repeat;
                     background-size: auto;
                     background-size: 100%;
                 }
