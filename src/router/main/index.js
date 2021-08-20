@@ -7,7 +7,7 @@ export default [
             /* webpackChunkName: "default" */ '@/pages/main/index'
         ),
         meta: {
-            title: '三位书屋',
+            title: '兔子FM - 兔子有声书',
             code: '',
         },
     },
@@ -18,7 +18,7 @@ export default [
             /* webpackChunkName: "default" */ '@/pages/main/detail'
         ),
         meta: {
-            title: '三位书屋',
+            title: '兔子FM - 兔子有声书',
             code: '',
         },
     },
