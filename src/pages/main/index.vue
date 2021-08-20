@@ -135,18 +135,15 @@ export default {
                 pageNumber: 1,
                 Sort: 'date',
             };
-            console.log(123123131);
             this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', parmas);
             this.getArticleList(parmas);
         },
         handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
             this.parmas.pageNumber = val;
             this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', this.parmas);
             this.getArticleList(this.parmas);
         },
         handleCurrentChange(val) {
-            console.log(`当前页: ${val}`);
             this.parmas.pageNumber = val;
             this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', this.parmas);
             this.getArticleList(this.parmas);
