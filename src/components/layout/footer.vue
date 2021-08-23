@@ -2,7 +2,7 @@
     <div class="footer-wrape">
         <div class="content">
             免责声明：本站部分资源来源于网络，版权归原作者所有，若有侵犯您的权利，请来信告知，
-            我们将立即予以删除。邮箱：abcde@？？.com 万分感谢！<br>
+            我们将立即予以删除。万分感谢！<br>
             <!--©xxx网 京ICP备20200xx号-1-->
         </div>
     </div>
