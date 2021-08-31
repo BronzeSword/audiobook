@@ -22,4 +22,15 @@ export default [
             code: '',
         },
     },
+    {
+        path: 'chapter',
+        name: 'chapter',
+        component: () => import(
+            /* webpackChunkName: "default" */ '@/pages/main/chapter'
+        ),
+        meta: {
+            title: '兔子FM - 兔子有声书',
+            code: '',
+        },
+    },
 ];

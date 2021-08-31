@@ -2,43 +2,34 @@
     <div class="detail-wrape">
         <div class="detail-left">
             <h1 class="title">
-                {{ detailData.chapter }}
-            </h1>
-            <h1 class="title">
                 {{ detailData.title }}
             </h1>
             <div class="info">
-                <!--<span>作者：{{ detailData.author }}</span>-->
-                <!--<span>热度：{{ detailData.hit }}</span>-->
-                <!--<span>更新时间：{{ detailData.createdAt }}</span>-->
-                <!--<span>分类：{{ detailData.categoryName }}</span>-->
+                <span>作者：{{ detailData.author }}</span>
+                <span>热度：{{ detailData.hit }}</span>
+                <span>更新时间：{{ detailData.createdAt }}</span>
+                <span>分类：{{ detailData.categoryName }}</span>
             </div>
-            <div
-                v-if="detailData.videoUrl"
-                class="content">
-                <iframe width="720"
-                        height="405"
-                        frameborder="0"
-                        :src="detailData.videoUrl"
-                        referrerpolicy="unsafe-url"
-                        class="video"
-                        allowfullscreen />
+            <div class="chapter-name">
+                简介
             </div>
-            <div
-                class="content"
-                v-html="detailData.body" />
-            <el-button class="btn-detail"
-                       @click="goToDetail(prevId)">
-                上一页
-            </el-button>
-            <el-button class="btn-detail"
-                       @click="goToChapter(bookId)">
-                回到目录
-            </el-button>
-            <el-button class="btn-detail-last"
-                       @click="goToDetail(nextId)">
-                下一页
-            </el-button>
+            <div class="content"
+                 v-html="detailData.body" />
+            <div v-for="(item, index) in chapterList"
+                 :key="index">
+                <div
+                    class="chapter-name"
+                    @click="goToDetail(item.id)">
+                    {{ item.title }}
+                </div>
+                <div v-for="(article, articleI) in item.articles"
+                     :key="articleI">
+                    <div class="chapter-title"
+                         @click="goToDetail(article.id)">
+                        {{ article.title }}
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="detail-right">
         <!--<div class="advertising-space">-->
@@ -59,8 +50,8 @@ export default {
         return {
             detailData: '',
             articleId: '',
-            prevId: '',
-            nextId: '',
+            chapterList: [],
+
         };
     },
     computed: mapState({
@@ -74,13 +65,10 @@ export default {
             if (!this.$route.query.articleId) {
                 return false;
             }
-
-            main.getArticleDetail(this.$route.query.articleId).then((res) => {
+            main.getBookDetail(this.$route.query.articleId).then((res) => {
                 if (res.code === 0) {
                     this.detailData = res.data;
-                    this.nextId = res.data.next;
-                    this.prevId = res.data.prev;
-                    this.bookId = res.data.bookId;
+                    this.chapterList = res.data.chapters || [];
 
                     this.parmas.categoryId = res.data.categoryId;
                     this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', this.parmas);
@@ -99,7 +87,6 @@ export default {
                     articleId: id,
                 },
             });
-            this.init();
         },
         // 去章节页面
         goToChapter(id) {
@@ -124,10 +111,23 @@ export default {
         .title {
             font-family: PingFangSC-Medium, sans-serif;
             font-size: 20px;
-            padding-bottom: 10px;
             line-height: 32px;
             color: #333;
             text-align: center;
+        }
+        .chapter-name {
+            font-family: PingFangSC-Medium, sans-serif;
+            font-size: 18px;
+            line-height: 40px;
+            color: #f86442;
+            text-align: left;
+        }
+        .chapter-title {
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 10px 10px 0;
+            color: #333;
+            text-align: left;
         }
         .info {
             color: #666;
@@ -147,9 +147,6 @@ export default {
                 display: block;
                 margin: auto;
             }
-        }
-        .btn-detail-last {
-            float: right;
         }
     }
     .detail-right {

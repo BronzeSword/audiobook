@@ -17,7 +17,7 @@
                         v-for="(item, index) in articleList"
                         :key="index"
                         class="item"
-                        @click="goToDetail(item.articleId)">
+                        @click="goToChapter(item.articleId)">
                         <div class="album">
                             <img :src="item.thumbnail">
                         </div>
@@ -66,7 +66,7 @@
                     v-for="(childrenItem, cindex) in item.list"
                     :key="cindex"
                     class="item"
-                    @click="goToDetail(childrenItem.articleId)">
+                    @click="goToChapter(childrenItem.articleId)">
                     <div class="text">
                         <span class="index-order">{{ cindex + 1 }}</span>
                         {{ childrenItem.title }} | {{ childrenItem.author }}
@@ -161,7 +161,7 @@ export default {
                 keyword: this.parmas.keyword,
                 categoryId: this.parmas.categoryId,
             };
-            main.getArticleRankList(parmas).then((res) => {
+            main.getBookRankList(parmas).then((res) => {
                 if (res.code === 0) {
                     this.rankList = res.data || [];
                 }
@@ -172,6 +172,15 @@ export default {
         goToDetail(id) {
             this.$router.push({
                 path: '/detail',
+                query: {
+                    articleId: id,
+                },
+            });
+        },
+        // 去章节页面
+        goToChapter(id) {
+            this.$router.push({
+                path: '/chapter',
                 query: {
                     articleId: id,
                 },

@@ -6,7 +6,7 @@ export default {
     // 首页文章列表
     getMainList(params) {
         return Fetch({
-            url: '/api/audio/article',
+            url: '/api/audio/book',
             method: 'get',
             params: {
                 ...params,
@@ -23,16 +23,23 @@ export default {
         });
     },
 
-    // 文章排行  /api/audio/article/633
-    getArticleRankList(params) {
+    // 书排行  /api/audio/article/633
+    getBookRankList(params) {
         return Fetch({
-            url: '/api/audio/article_rank',
+            url: '/api/audio/book_rank',
             method: 'get',
             params,
         });
     },
 
-    // 文章文章详情
+    // 书详情
+    getBookDetail(params) {
+        return Fetch({
+            url: `/api/audio/book/${params}`,
+            method: 'get',
+        });
+    },
+    // 文章列表
     getArticleDetail(params) {
         return Fetch({
             url: `/api/audio/article/${params}`,

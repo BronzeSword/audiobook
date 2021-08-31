@@ -89,7 +89,7 @@ export default {
             font-weight: 500;
             &.active {
                 background: #fff4e8;
-                color: #d98b3a;
+                color: #f86442;
                 border: 1px solid rgba(191, 118, 42, 0.31);
                 border-radius: 5px;
                 font-size: 14px;
