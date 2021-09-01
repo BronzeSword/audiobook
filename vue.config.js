@@ -27,7 +27,8 @@ module.exports = {
                     inject: {
                         foo: 'bar',
                     },
-                    headless: false,
+                    headless: true,
+                    devtools: false,
                     renderAfterDocumentEvent: 'render-event',
                 }),
             }),
