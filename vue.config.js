@@ -22,7 +22,10 @@ module.exports = {
         plugins: [
             new PrerenderSPAPlugin({
                 staticDir: path.join(__dirname, 'dist'),
-                routes: ['/', '/detail', '/chapter', '/chapter/?articleId=10567', '/chapter/articleId', '/detail/articleId'],
+                // 动态不生效，需再找方案
+                //  routes: ['/', '/detail', '/chapter', '/chapter/?articleId=10567',
+                // '/chapter/articleId', '/detail/articleId'],
+                routes: ['/'],
                 renderer: new Renderer({
                     inject: {
                         // articleId: '10447',
