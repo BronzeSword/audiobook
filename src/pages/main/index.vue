@@ -36,7 +36,7 @@
                 <div class="page-pagination-wrape">
                     <el-pagination
                         :current-page.sync="currentPage"
-                        :page-size="10"
+                        :page-size="50"
                         :total="totalNumber"
                         background
                         layout="prev, pager, next, jumper"
@@ -73,9 +73,9 @@
                     </div>
                 </li>
             </ol>
-            <div class="advertising-space">
-                广告位
-            </div>
+        <!--<div class="advertising-space">-->
+            <!--广告位-->
+        <!--</div>-->
         </div>
     </div>
 </template>

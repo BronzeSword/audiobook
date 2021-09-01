@@ -1,3 +1,3 @@
 export default {
-    pageSize: 10,
+    pageSize: 50,
 };
