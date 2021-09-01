@@ -15,5 +15,8 @@ Vue.prototype.$fetch = fetch;
 new Vue({
     router,
     store,
+    mounted() {
+        document.dispatchEvent(new Event('render-event'));
+    },
     render: (h) => h(App),
 }).$mount('#app');

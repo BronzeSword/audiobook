@@ -1,4 +1,6 @@
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 const path = require('path');
 
 function addStyleResource(rule) {
@@ -15,7 +17,21 @@ function resolve(dir) {
 }
 module.exports = {
     runtimeCompiler: true,
+    productionSourceMap: false,
     configureWebpack: {
+        plugins: [
+            new PrerenderSPAPlugin({
+                staticDir: path.join(__dirname, 'dist'),
+                routes: ['/', '/detail', '/chapter'],
+                renderer: new Renderer({
+                    inject: {
+                        foo: 'bar',
+                    },
+                    headless: false,
+                    renderAfterDocumentEvent: 'render-event',
+                }),
+            }),
+        ],
         resolve: {
             extensions: ['.js', '.json', '.css', '.less', '.vue', '.scss', '.stylus', '.ts'],
         },
