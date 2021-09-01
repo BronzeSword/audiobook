@@ -16,21 +16,22 @@
                     <li
                         v-for="(item, index) in articleList"
                         :key="index"
-                        class="item"
-                        @click="goToChapter(item.articleId)">
-                        <div class="album">
-                            <img :src="item.thumbnail">
-                        </div>
-                        <div class="info">
-                            <h4 class="title">
-                                {{ item.title }}
-                            </h4>
-                            <p>作者：{{ item.author }}</p>
-                            <p>分类：{{ item.categoryName }}</p>
-                            <!-- <p>状态：{{ item.statusStr }}</p> -->
-                            <p>时间：{{ item.createdAt }}</p>
-                            <p>热度：{{ item.hit }}</p>
-                        </div>
+                        class="item">
+                        <a :href="'/chapter?articleId='+item.articleId">
+                            <div class="album">
+                                <img :src="item.thumbnail">
+                            </div>
+                            <div class="info">
+                                <h4 class="title">
+                                    {{ item.title }}
+                                </h4>
+                                <p>作者：{{ item.author }}</p>
+                                <p>分类：{{ item.categoryName }}</p>
+                                <!-- <p>状态：{{ item.statusStr }}</p> -->
+                                <p>时间：{{ item.createdAt }}</p>
+                                <p>热度：{{ item.hit }}</p>
+                            </div>
+                        </a>
                     </li>
                 </ul>
                 <div class="page-pagination-wrape">
@@ -65,12 +66,14 @@
                 <li
                     v-for="(childrenItem, cindex) in item.list"
                     :key="cindex"
-                    class="item"
-                    @click="goToChapter(childrenItem.articleId)">
-                    <div class="text">
-                        <span class="index-order">{{ cindex + 1 }}</span>
-                        {{ childrenItem.title }} | {{ childrenItem.author }}
-                    </div>
+                    class="item">
+                    <a :href="'/chapter?articleId='+childrenItem.articleId"
+                       class="a-tag">
+                        <div class="text">
+                            <span class="index-order">{{ cindex + 1 }}</span>
+                            {{ childrenItem.title }} | {{ childrenItem.author }}
+                        </div>
+                    </a>
                 </li>
             </ol>
         <!--<div class="advertising-space">-->
@@ -317,6 +320,9 @@ export default {
                 line-height: 28px;
                 color: #333;
                 margin-bottom: 10px;
+            }
+            .a-tag {
+                text-decoration: none;
             }
             .item {
                 line-height: 0;

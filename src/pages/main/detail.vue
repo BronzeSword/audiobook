@@ -4,7 +4,8 @@
             <h1 class="title">
                 {{ detailData.chapter }}
             </h1>
-            <h1 class="title">
+            <h1 v-if="detailData.chapter!==detailData.title"
+                class="title">
                 {{ detailData.title }}
             </h1>
             <div class="info">
@@ -27,18 +28,24 @@
             <div
                 class="content"
                 v-html="detailData.body" />
-            <el-button class="btn-detail"
-                       @click="goToDetail(prevId)">
-                上一页
-            </el-button>
-            <el-button class="btn-detail"
-                       @click="goToChapter(bookId)">
-                回到目录
-            </el-button>
-            <el-button class="btn-detail-last"
-                       @click="goToDetail(nextId)">
-                下一页
-            </el-button>
+            <a v-if="prevId"
+               :href="'/detail?articleId='+prevId">
+                <el-button class="btn-detail">
+                    上一页
+                </el-button>
+            </a>
+            <a v-if="bookId"
+               :href="'/chapter?articleId='+bookId">
+                <el-button class="btn-detail">
+                    回到目录
+                </el-button>
+            </a>
+            <a v-if="nextId"
+               :href="'/detail?articleId='+nextId">
+                <el-button class="btn-detail-last">
+                    下一页
+                </el-button>
+            </a>
         </div>
         <div class="detail-right">
         <!--<div class="advertising-space">-->

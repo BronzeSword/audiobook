@@ -18,15 +18,21 @@
             <div v-for="(item, index) in chapterList"
                  :key="index">
                 <div
-                    class="chapter-name"
-                    @click="goToDetail(item.id)">
-                    {{ item.title }}
+                    class="chapter-name">
+                    <a v-if="item.id!==undefined"
+                       :href="'/detail?articleId='+item.id">
+                        {{ item.title }}
+                    </a>
+                    <div v-else>
+                        {{ item.title }}
+                    </div>
                 </div>
                 <div v-for="(article, articleI) in item.articles"
                      :key="articleI">
-                    <div class="chapter-title"
-                         @click="goToDetail(article.id)">
-                        {{ article.title }}
+                    <div class="chapter-title">
+                        <a :href="'/detail?articleId='+article.id">
+                            {{ article.title }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -69,7 +75,6 @@ export default {
                 if (res.code === 0) {
                     this.detailData = res.data;
                     this.chapterList = res.data.chapters || [];
-
                     this.parmas.categoryId = res.data.categoryId;
                     this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', this.parmas);
                 }
@@ -114,6 +119,9 @@ export default {
             line-height: 32px;
             color: #333;
             text-align: center;
+        }
+        a {
+            text-decoration: none;
         }
         .chapter-name {
             font-family: PingFangSC-Medium, sans-serif;
