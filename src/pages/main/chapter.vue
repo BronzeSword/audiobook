@@ -5,7 +5,9 @@
                 {{ detailData.title }}
             </h1>
             <div class="info">
-                <span>作者：{{ detailData.author }}</span>
+                <a :href="'/author?authorId='+detailData.authorId">
+                    <span>作者：{{ detailData.author }}</span>
+                </a>
                 <span>热度：{{ detailData.hit }}</span>
                 <span>更新时间：{{ detailData.createdAt }}</span>
                 <span>分类：{{ detailData.categoryName }}</span>

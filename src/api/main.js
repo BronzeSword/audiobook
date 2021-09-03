@@ -39,10 +39,17 @@ export default {
             method: 'get',
         });
     },
-    // 文章列表
+    // 文章详情
     getArticleDetail(params) {
         return Fetch({
             url: `/api/audio/article/${params}`,
+            method: 'get',
+        });
+    },
+    // 作者详情
+    getAuthorDetail(params) {
+        return Fetch({
+            url: `/api/audio/author/${params}`,
             method: 'get',
         });
     },

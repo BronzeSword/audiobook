@@ -7,7 +7,7 @@ export default [
             /* webpackChunkName: "default" */ '@/pages/main/index'
         ),
         meta: {
-            title: '兔子FM - 兔子有声书',
+            title: '兔子FM - 兔子小说',
             code: '',
         },
     },
@@ -18,7 +18,7 @@ export default [
             /* webpackChunkName: "default" */ '@/pages/main/detail'
         ),
         meta: {
-            title: '兔子FM - 兔子有声书',
+            title: '兔子FM - 兔子小说',
             code: '',
         },
     },
@@ -29,8 +29,20 @@ export default [
             /* webpackChunkName: "default" */ '@/pages/main/chapter'
         ),
         meta: {
-            title: '兔子FM - 兔子有声书',
+            title: '兔子FM - 兔子小说',
             code: '',
         },
     },
+    {
+        path: 'author',
+        name: 'author',
+        component: () => import(
+            /* webpackChunkName: "default" */ '@/pages/main/author'
+        ),
+        meta: {
+            title: '兔子FM - 兔子小说',
+            code: '',
+        },
+    },
+
 ];
