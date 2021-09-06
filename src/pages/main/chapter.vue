@@ -19,15 +19,15 @@
                  v-html="detailData.body" />
             <div v-for="(item, index) in chapterList"
                  :key="index">
-                <div
-                    class="chapter-name">
-                    <a v-if="item.id!==undefined"
-                       :href="'/detail?articleId='+item.id">
+                <div v-if="item.id!==undefined"
+                     class="chapter-name">
+                    <a :href="'/detail?articleId='+item.id">
                         {{ item.title }}
                     </a>
-                    <div v-else>
-                        {{ item.title }}
-                    </div>
+                </div>
+                <div v-else
+                     class="chapter-name">
+                    {{ item.title }}
                 </div>
                 <div v-for="(article, articleI) in item.articles"
                      :key="articleI">
@@ -127,7 +127,7 @@ export default {
         }
         .chapter-name {
             font-family: PingFangSC-Medium, sans-serif;
-            font-size: 18px;
+            font-size: 20px;
             line-height: 40px;
             color: #f86442;
             text-align: left;
