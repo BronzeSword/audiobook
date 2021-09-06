@@ -26,7 +26,7 @@
                         allowfullscreen />
             </div>
             <div
-                class="content"
+                class="contentDetail"
                 v-html="detailData.body" />
             <a v-if="prevId"
                :href="'/detail?articleId='+prevId">
@@ -176,6 +176,16 @@ export default {
         content: '';
         display: block;
         clear: both;
+    }
+}
+</style>
+<style lang="scss">
+.detail-wrape {
+    .contentDetail {
+        div {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
     }
 }
 </style>
