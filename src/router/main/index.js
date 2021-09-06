@@ -34,6 +34,17 @@ export default [
         },
     },
     {
+        path: 'privacy_policy',
+        name: 'privacy_policy',
+        component: () => import(
+            /* webpackChunkName: "default" */ '@/pages/main/privacy_policy'
+        ),
+        meta: {
+            title: '兔子FM - 隐私条款',
+            code: '',
+        },
+    },
+    {
         path: 'author',
         name: 'author',
         component: () => import(

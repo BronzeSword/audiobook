@@ -25,7 +25,7 @@ module.exports = {
                 // 动态不生效，需再找方案
                 //  routes: ['/', '/detail', '/chapter', '/chapter/?articleId=10567',
                 // '/chapter/articleId', '/detail/articleId'],
-                routes: ['/'],
+                routes: ['/', '/privacy_policy'],
                 renderer: new Renderer({
                     inject: {
                         // articleId: '10447',
