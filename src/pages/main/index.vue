@@ -312,7 +312,7 @@ export default {
         margin-left: 40px;
         float: left;
         .rank-list {
-            margin-bottom: 20px;
+            margin-bottom: 50px;
             background: #fff;
             .rank-title {
                 font-family: PingFangSC-Medium;
