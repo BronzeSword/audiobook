@@ -1,17 +1,5 @@
 export default [
     {
-        path: 'index',
-        alias: '/',
-        name: 'index',
-        component: () => import(
-            /* webpackChunkName: "default" */ '@/pages/main/index'
-        ),
-        meta: {
-            title: '兔子FM - 兔子小说',
-            code: '',
-        },
-    },
-    {
         path: 'detail',
         name: 'detail',
         component: () => import(

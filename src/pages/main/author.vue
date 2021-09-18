@@ -1,6 +1,10 @@
 <template>
     <div class="detail-wrape">
         <div class="detail-left">
+            <el-button class="btn-detail"
+                       @click="back">
+                返回
+            </el-button>
             <h1 class="title">
                 {{ detailData.name }}
             </h1>
@@ -94,6 +98,9 @@ export default {
             });
             return true;
         },
+        back() {
+            this.$router.go(-1);
+        },
 
     },
 };
@@ -101,10 +108,11 @@ export default {
 
 <style lang="scss" scoped>
 .detail-wrape {
-    width: 1080px;
-    margin: 0 auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    padding-bottom: 30px;
     .detail-left {
-        width: 800px;
         float: left;
         .column {
             margin: 10px;
@@ -203,7 +211,6 @@ export default {
         }
     }
     .detail-right {
-        width: 240px;
         margin-left: 40px;
         float: left;
         .advertising-space {

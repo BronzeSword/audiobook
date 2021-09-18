@@ -78,9 +78,9 @@ export default {
         left: 0;
         z-index: 10;
         .header-content {
-            width: 1080px;
             height: 60px;
             margin: 0 auto;
+            margin-left: 5%;
             .logo {
                 position: relative;
                 width: 120px;
@@ -106,7 +106,8 @@ export default {
             }
             .search {
                 float: right;
-                width: 400px;
+                width: 50%;
+                margin-right: 5%;
                 margin-top: 10px;
                 /deep/ .el-input__inner {
                     border: 1px solid #f86442;

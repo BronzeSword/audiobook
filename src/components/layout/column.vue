@@ -69,8 +69,7 @@ export default {
 
 <style lang='scss' scoped>
 .column-wrape {
-    width: 1080px;
-    margin: 20px auto;
+    margin: 20px 5%;
     position: relative;
     .tag-list {
         padding: 20px 20px 4px 20px;

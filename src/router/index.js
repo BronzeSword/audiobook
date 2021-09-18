@@ -2,6 +2,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import DefaultLayout from '@/components/layout/default';
+import OnlyHeaderLayout from '@/components/layout/only-header';
 
 import main from './main';
 
@@ -12,6 +13,24 @@ const routes = [
     {
         path: '/',
         component: DefaultLayout,
+        children: [
+            {
+                path: 'index',
+                alias: '/',
+                name: 'index',
+                component: () => import(
+                    /* webpackChunkName: "default" */ '@/pages/main/index'
+                ),
+                meta: {
+                    title: '兔子FM - 兔子小说',
+                    code: '',
+                },
+            },
+        ],
+    },
+    {
+        path: '/',
+        component: OnlyHeaderLayout,
         children: [...main],
     },
     {

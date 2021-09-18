@@ -22,7 +22,6 @@ export default {
 .footer-wrape {
     padding-bottom: 40px;
     .content {
-        width: 1080px;
         margin: 50px auto 0;
         font-size: 12px;
         color: #999;

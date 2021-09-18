@@ -1,11 +1,31 @@
 <template>
     <div class="detail-wrape">
         <div class="detail-left">
-            <h1 class="title">
+            <a v-if="prevId"
+               :href="'/detail?articleId='+prevId">
+                <el-button class="btn-detail">
+                    上一页
+                </el-button>
+            </a>
+            <a v-if="bookId"
+               :href="'/chapter?articleId='+bookId">
+                <el-button class="btn-detail">
+                    回到目录
+                </el-button>
+            </a>
+            <a v-if="nextId"
+               :href="'/detail?articleId='+nextId">
+                <el-button class="btn-detail-last">
+                    下一页
+                </el-button>
+            </a>
+            <h1 v-if="detailData.chapter"
+                class="title">
                 {{ detailData.chapter }}
             </h1>
+
             <h1 v-if="detailData.chapter!==detailData.title"
-                class="title">
+                class="subtitle">
                 {{ detailData.title }}
             </h1>
             <div class="info">
@@ -47,7 +67,7 @@
                 </el-button>
             </a>
         </div>
-        <div class="detail-right">
+        <div class="detail-right mobileNone">
         <!--<div class="advertising-space">-->
             <!--广告位-->
         <!--</div>-->
@@ -123,12 +143,23 @@ export default {
 
 <style lang="scss" scoped>
 .detail-wrape {
-    width: 1080px;
-    margin: 0 auto;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-bottom: 30px;
     .detail-left {
-        width: 800px;
         float: left;
         .title {
+            margin-top: 30px;
+            font-family: PingFangSC-Medium, sans-serif;
+            font-size: 20px;
+            padding-bottom: 10px;
+            line-height: 32px;
+            color: #333;
+            text-align: center;
+        }
+        .subtitle {
+            margin-top: 10px;
             font-family: PingFangSC-Medium, sans-serif;
             font-size: 20px;
             padding-bottom: 10px;
@@ -160,7 +191,6 @@ export default {
         }
     }
     .detail-right {
-        width: 240px;
         margin-left: 40px;
         float: left;
         .advertising-space {

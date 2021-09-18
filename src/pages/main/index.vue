@@ -55,7 +55,7 @@
             </template>
         </div>
         <!-- 热榜 -->
-        <div class="layout-side_explore">
+        <div class="layout-side_explore mobileNone">
             <ol
                 v-for="(item, pindex) in rankList"
                 :key="pindex"
@@ -195,11 +195,11 @@ export default {
 
 <style lang="scss" scoped>
 .home-page-content {
-    width: 1080px;
     margin: 20px auto 0;
     overflow: hidden;
     .layout-mian_explore {
-        width: 800px;
+        margin-left: 5%;
+        width: 72%;
         float: left;
         .sort {
             text-align: right;
@@ -227,6 +227,7 @@ export default {
         }
         .list {
             .item {
+                margin-left: 10px;
                 display: inline-block;
                 vertical-align: top;
                 width: 390px;
@@ -234,13 +235,13 @@ export default {
                 cursor: pointer;
                 .album {
                     float: left;
-                    width: 190px;
-                    height: 126px;
+                    width: 170px;
+                    height: 106px;
                     position: relative;
                     background: #fff;
                     img {
-                        width: 190px;
-                        height: 126px;
+                        width: 170px;
+                        height: 106px;
                     }
                 }
                 .info {
@@ -308,7 +309,7 @@ export default {
         }
     }
     .layout-side_explore {
-        width: 240px;
+        width: 18%;
         margin-left: 40px;
         float: left;
         .rank-list {
@@ -369,9 +370,12 @@ export default {
     }
 
     .empty-data {
-        width: 800px;
+        width: 80%;
         text-align: center;
         height: 300px;
+        .img {
+            width: 80%;
+        }
         .tips {
             color: #333;
             font-size: 14px;

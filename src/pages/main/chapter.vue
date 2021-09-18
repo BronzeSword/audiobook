@@ -1,6 +1,10 @@
 <template>
     <div class="detail-wrape">
         <div class="detail-left">
+            <el-button class="btn-detail"
+                       @click="back">
+                返回
+            </el-button>
             <h1 class="title">
                 {{ detailData.title }}
             </h1>
@@ -39,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="detail-right">
+        <div class="detail-right mobileNone">
         <!--<div class="advertising-space">-->
             <!--广告位-->
         <!--</div>-->
@@ -83,6 +87,9 @@ export default {
             });
             return true;
         },
+        back() {
+            this.$router.go(-1);
+        },
         // 去详情页面
         goToDetail(id) {
             if (!id) {
@@ -110,10 +117,10 @@ export default {
 
 <style lang="scss" scoped>
 .detail-wrape {
-    width: 1080px;
-    margin: 0 auto;
+    margin-top: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
     .detail-left {
-        width: 800px;
         float: left;
         .title {
             font-family: PingFangSC-Medium, sans-serif;
@@ -160,7 +167,6 @@ export default {
         }
     }
     .detail-right {
-        width: 240px;
         margin-left: 40px;
         float: left;
         .advertising-space {
