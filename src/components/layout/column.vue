@@ -52,7 +52,6 @@ export default {
         },
         checked(i) {
             this.clickLinkBtn = 1;
-            console.warn('aaa');
             this.parmas.pageNumber = 1;
             const parmas = {
                 keyword: this.parmas.keyword,
