@@ -88,7 +88,9 @@ export default {
             return true;
         },
         back() {
-            this.$router.go(-1);
+            this.$router.push({
+                path: '/',
+            });
         },
         // 去详情页面
         goToDetail(id) {
