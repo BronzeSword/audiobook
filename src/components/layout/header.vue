@@ -7,7 +7,8 @@
                 <div class="search">
                     <el-input v-model="parmas.keyword"
                               placeholder="请输入内容"
-                              class="input-with-select">
+                              class="input-with-select"
+                              @keypress.native.enter="search">
                         <el-button slot="append"
                                    icon="el-icon-search"
                                    @click="search" />
@@ -45,6 +46,7 @@ export default {
     methods: {
         ...mapActions(['getArticleList']),
         search() {
+            if (!this.parmas.keyword) return;
             this.clickLinkBtn = 1;
             this.distinguishPages(this.parmas, 'header');
         },
