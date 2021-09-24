@@ -1,6 +1,6 @@
-const PrerenderSPAPlugin = require('prerender-spa-plugin');
+// const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
-const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
+// const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 const path = require('path');
 
 function addStyleResource(rule) {
@@ -20,22 +20,22 @@ module.exports = {
     productionSourceMap: false,
     configureWebpack: {
         plugins: [
-            new PrerenderSPAPlugin({
-                staticDir: path.join(__dirname, 'dist'),
-                // 动态不生效，需再找方案
-                //  routes: ['/', '/detail', '/chapter', '/chapter/?articleId=10567',
-                // '/chapter/articleId', '/detail/articleId'],
-                routes: ['/', '/privacy_policy'],
-                renderer: new Renderer({
-                    inject: {
-                        // articleId: '10447',
-                        foo: 'bar',
-                    },
-                    headless: true,
-                    devtools: false,
-                    renderAfterDocumentEvent: 'render-event',
-                }),
-            }),
+            // new PrerenderSPAPlugin({
+            //     staticDir: path.join(__dirname, 'dist'),
+            //     // 动态不生效，需再找方案
+            //     //  routes: ['/', '/detail', '/chapter', '/chapter/?articleId=10567',
+            //     // '/chapter/articleId', '/detail/articleId'],
+            //     routes: ['/', '/privacy_policy'],
+            //     renderer: new Renderer({
+            //         inject: {
+            //             // articleId: '10447',
+            //             foo: 'bar',
+            //         },
+            //         headless: true,
+            //         devtools: false,
+            //         renderAfterDocumentEvent: 'render-event',
+            //     }),
+            // }),
         ],
         resolve: {
             extensions: ['.js', '.json', '.css', '.less', '.vue', '.scss', '.stylus', '.ts'],
