@@ -83,9 +83,22 @@ export default {
                     this.chapterList = res.data.chapters || [];
                     this.parmas.categoryId = res.data.categoryId;
                     this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', this.parmas);
+                    document.title = `${res.data.title}-${res.data.author}-兔子FM`;
+                    const keyword = `${res.data.title},${res.data.author},兔子FM`;
+                    const desc = this.stripHtml(res.data.body).slice(0, 120);
+                    const head = document.getElementsByTagName('head');
+                    const meta = document.createElement('meta');
+                    document.querySelector('meta[name="keywords"]').setAttribute('content', keyword);
+                    document.querySelector('meta[name="description"]').setAttribute('content', desc);
+                    head[0].appendChild(meta);
                 }
             });
             return true;
+        },
+        stripHtml(html) {
+            const tmp = document.createElement('DIV');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
         },
         back() {
             this.$router.push({

@@ -111,9 +111,31 @@ export default {
 
                     this.parmas.categoryId = res.data.categoryId;
                     this.$store.commit('SET_SEARCH_ARTICLE_PARAMS', this.parmas);
+
+                    let title;
+                    let keyword;
+                    if (res.data.title !== res.data.chapter) {
+                        title = `${res.data.title}-${res.data.chapter}-兔子FM`;
+                        keyword = `${res.data.title},${res.data.chapter},兔子FM`;
+                    } else {
+                        title = `${res.data.title}-兔子FM`;
+                        keyword = `${res.data.title},兔子FM`;
+                    }
+                    document.title = title;
+                    const desc = this.stripHtml(res.data.body).slice(0, 120);
+                    const head = document.getElementsByTagName('head');
+                    const meta = document.createElement('meta');
+                    document.querySelector('meta[name="keywords"]').setAttribute('content', keyword);
+                    document.querySelector('meta[name="description"]').setAttribute('content', desc);
+                    head[0].appendChild(meta);
                 }
             });
             return true;
+        },
+        stripHtml(html) {
+            const tmp = document.createElement('DIV');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
         },
         // 去详情页面
         goToDetail(id) {
